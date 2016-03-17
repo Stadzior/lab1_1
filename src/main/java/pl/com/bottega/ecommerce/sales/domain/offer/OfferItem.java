@@ -21,6 +21,8 @@ import java.util.Date;
 public class OfferItem {
 
 	private Product product = new Product();
+	
+	private 
 
 	private int quantity;
 
