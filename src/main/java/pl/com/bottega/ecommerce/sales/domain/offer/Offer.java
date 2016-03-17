@@ -21,6 +21,7 @@ private List<OfferItem> availableItems = new ArrayList<OfferItem>();
 	
 	private List<OfferItem> getAvailableItems() {
 		List<OfferItem> availableItems = new ArrayList<OfferItem>();
+		
 		for(OfferItem offerItem : offerItems){
 			if(offerItem.isAvailable())	{
 				availableItems.add(offerItem);
@@ -41,16 +42,15 @@ private List<OfferItem> availableItems = new ArrayList<OfferItem>();
 	@Override
 	public boolean equals(Object obj) {
 		
-		boolean isEqual = ((this == obj) && (getClass() == obj.getClass()));
-
+		boolean isEqual = false;
+		boolean isSameInstance = (this == obj) && (getClass() == obj.getClass());
+		
 		Offer other = (Offer)obj;
 		
-		if (availableItems == null) {
-			if (other.availableItems != null)
-				return false;
-		} else if (!availableItems.equals(other.availableItems))
-			return false;
-		return true;
+		boolean availableItemsExists = !((availableItems == null) && (availableItems != null));
+		boolean isSameAvailableItems = availableItems.equals(other.availableItems);
+
+		isEqual = isSameInstance && availableItemsExists && isSameAvailableItems;
 		return isEqual;
 	}
 
@@ -65,7 +65,7 @@ private List<OfferItem> availableItems = new ArrayList<OfferItem>();
 			return false;
 		
 		for (OfferItem item : availableItems) {
-			OfferItem sameItem = seenOffer.findItem(item.getProductId());
+			OfferItem sameItem = seenOffer.findItem(item.getProduct().getProductId());
 			if (sameItem == null)
 				return false;
 			if (!sameItem.sameAs(item, delta))
@@ -77,7 +77,7 @@ private List<OfferItem> availableItems = new ArrayList<OfferItem>();
 
 	private OfferItem findItem(String productId) {
 		for (OfferItem item : availableItems){
-			if (item.getProductId().equals(productId))
+			if (item.getProduct().getProductId().equals(productId))
 				return item;
 		}
 		return null;
