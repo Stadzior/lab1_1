@@ -17,7 +17,7 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 
 import java.math.BigDecimal;
 
-public class OfferItem {
+public class OfferItem implements IComparableOffer<OfferItem> {
 
 	private Product product = new Product();
 
@@ -123,6 +123,14 @@ public class OfferItem {
 		return true;
 	}
 
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+	
 	/**
 	 * 
 	 * @param item
@@ -130,7 +138,7 @@ public class OfferItem {
 	 *            acceptable percentage difference
 	 * @return
 	 */
-	public boolean sameAs(OfferItem other, double delta) {
+	public boolean sameAs(OfferItem other, Double delta) {
 		if (product.getProductName() == null) {
 			if (other.product.getProductName() != null)
 				return false;
@@ -165,14 +173,6 @@ public class OfferItem {
 		BigDecimal acceptableDelta = max.multiply(new BigDecimal(delta / 100));
 
 		return acceptableDelta.compareTo(difference) > 0;
-	}
-
-	public boolean isAvailable() {
-		return available;
-	}
-
-	public void setAvailable(boolean available) {
-		this.available = available;
 	}
 
 }

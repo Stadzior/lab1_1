@@ -3,7 +3,7 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Offer {
+public class Offer implements IComparableOffer<Offer> {
 private List<OfferItem> offerItems = new ArrayList<OfferItem>();
 private List<OfferItem> availableItems = new ArrayList<OfferItem>();
 	public Offer(List<OfferItem> items) {
@@ -54,13 +54,21 @@ private List<OfferItem> availableItems = new ArrayList<OfferItem>();
 		return isEqual;
 	}
 
+	private OfferItem findItem(String productId) {
+		for (OfferItem item : availableItems){
+			if (item.getProduct().getProductId().equals(productId))
+				return item;
+		}
+		return null;
+	}
+
 	/**
 	 * 
 	 * @param seenOffer
 	 * @param delta acceptable difference in percent
 	 * @return
 	 */
-	public boolean sameAs(Offer seenOffer, double delta) {
+	public boolean sameAs(Offer seenOffer, Double delta) {
 		if (! (availableItems.size() == seenOffer.availableItems.size()))
 			return false;
 		
@@ -73,14 +81,6 @@ private List<OfferItem> availableItems = new ArrayList<OfferItem>();
 		}
 		
 		return true;
-	}
-
-	private OfferItem findItem(String productId) {
-		for (OfferItem item : availableItems){
-			if (item.getProduct().getProductId().equals(productId))
-				return item;
-		}
-		return null;
 	}	
 
 }
