@@ -1,0 +1,20 @@
+1. Wydzielamy klasy:
+Discount:
+discountCause,discount
+
+Product:
+productId,productType,productPrice,productName,productSnapshotDate
+
+Offer:
+List<OfferItem> offerItems 
+
+OfferItem:
+Product,quantity,totalCost,Discount, Available
+
+2. productType,currency jako enum
+
+Wydzielenie metody sameAs do interfejsu IComparableOffer
+
+Uzupe³nienie komentarzy/dokumentacji
+
+Refactoring nazw
