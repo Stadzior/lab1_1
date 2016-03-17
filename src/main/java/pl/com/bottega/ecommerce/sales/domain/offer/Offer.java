@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Offer {
-private List<OfferItem> availabeItems = new ArrayList<OfferItem>();
+private List<OfferItem> offerItems = new ArrayList<OfferItem>();
 	
-	private List<OfferItem> unavailableItems = new ArrayList<OfferItem>();
-	
-	
-	public Offer(List<OfferItem> availabeItems, List<OfferItem> unavailableItems) {
-		this.availabeItems = availabeItems;
-		this.unavailableItems = unavailableItems;
+	public Offer(List<OfferItem> items) {
+		this.setOfferItems(items);
 	}
 
 	public List<OfferItem> getAvailabeItems() {
@@ -75,6 +71,14 @@ private List<OfferItem> availabeItems = new ArrayList<OfferItem>();
 				return item;
 		}
 		return null;
+	}
+
+	public List<OfferItem> getOfferItems() {
+		return offerItems;
+	}
+
+	public void setOfferItems(List<OfferItem> offerItems) {
+		this.offerItems = offerItems;
 	}
 	
 

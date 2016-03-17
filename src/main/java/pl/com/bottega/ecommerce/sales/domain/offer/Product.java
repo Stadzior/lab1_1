@@ -9,7 +9,7 @@ public class Product {
 	private String productName;
 	private Date productSnapshotDate;
 	private String productType;
-
+	
 	public Product() {
 	}
 
