@@ -10,14 +10,14 @@ private List<OfferItem> offerItems = new ArrayList<OfferItem>();
 		this.setOfferItems(items);
 	}
 
-	public List<OfferItem> getAvailabeItems() {
-		return availabeItems;
-	}
-	
-	public List<OfferItem> getUnavailableItems() {
-		return unavailableItems;
+	public List<OfferItem> getOfferItems() {
+		return offerItems;
 	}
 
+	public void setOfferItems(List<OfferItem> offerItems) {
+		this.offerItems = offerItems;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -51,10 +51,10 @@ private List<OfferItem> offerItems = new ArrayList<OfferItem>();
 	 * @return
 	 */
 	public boolean sameAs(Offer seenOffer, double delta) {
-		if (! (availabeItems.size() == seenOffer.availabeItems.size()))
+		if (! (availableItems.size() == seenOffer.availableItems.size()))
 			return false;
 		
-		for (OfferItem item : availabeItems) {
+		for (OfferItem item : availableItems) {
 			OfferItem sameItem = seenOffer.findItem(item.getProductId());
 			if (sameItem == null)
 				return false;
@@ -66,20 +66,11 @@ private List<OfferItem> offerItems = new ArrayList<OfferItem>();
 	}
 
 	private OfferItem findItem(String productId) {
-		for (OfferItem item : availabeItems){
+		for (OfferItem item : availableItems){
 			if (item.getProductId().equals(productId))
 				return item;
 		}
 		return null;
-	}
-
-	public List<OfferItem> getOfferItems() {
-		return offerItems;
-	}
-
-	public void setOfferItems(List<OfferItem> offerItems) {
-		this.offerItems = offerItems;
-	}
-	
+	}	
 
 }

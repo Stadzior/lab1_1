@@ -38,11 +38,8 @@ public class OfferItem {
 	public OfferItem(String productId, BigDecimal productPrice, String productName,
 			Date productSnapshotDate, String productType, int quantity,
 			BigDecimal discount, String discountCause) {
-		this.product.setProductId(productId);
-		this.product.setProductPrice(productPrice);
-		this.product.setProductName(productName);
-		this.product.setProductSnapshotDate(productSnapshotDate);
-		this.product.setProductType(productType);
+		
+		this.product = new Product(productId,productPrice,productName,productSnapshotDate,productType);
 
 		this.quantity = quantity;
 		this.discount.setDiscount(discount);
@@ -52,8 +49,7 @@ public class OfferItem {
 		if (discount != null)
 			discountValue = discountValue.subtract(discount);
 
-		this.this.value.getValue() = productPrice
-				.multiply(new BigDecimal(quantity)).subtract(discountValue);
+		this.value.setValue(productPrice.multiply(new BigDecimal(quantity)).subtract(discountValue));
 	}
 
 	public BigDecimal getDiscount() {
@@ -156,11 +152,11 @@ public class OfferItem {
 			return false;
 
 		BigDecimal max, min;
-		if (this.value.getValue().compareTo(other.this.value.getValue()) > 0) {
+		if (this.value.getValue().compareTo(other.value.getValue()) > 0) {
 			max = this.value.getValue();
-			min = other.this.value.getValue();
+			min = other.value.getValue();
 		} else {
-			max = other.this.value.getValue();
+			max = other.value.getValue();
 			min = this.value.getValue();
 		}
 
