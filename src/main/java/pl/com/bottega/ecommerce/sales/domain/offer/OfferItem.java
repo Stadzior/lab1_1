@@ -21,8 +21,6 @@ import java.util.Date;
 public class OfferItem {
 
 	private Product product = new Product();
-	
-	private 
 
 	private int quantity;
 
@@ -33,12 +31,12 @@ public class OfferItem {
 	private EntityValue value = new EntityValue();
 	
 	public OfferItem(String productId, BigDecimal productPrice, String productName,
-			Date productSnapshotDate, String productType, int quantity) {
+			Date productSnapshotDate, ProductType productType, int quantity) {
 		this(productId, productPrice, productName, productSnapshotDate, productType, quantity, null, null);
 	}
 
 	public OfferItem(String productId, BigDecimal productPrice, String productName,
-			Date productSnapshotDate, String productType, int quantity,
+			Date productSnapshotDate, ProductType productType, int quantity,
 			BigDecimal discount, String discountCause) {
 		
 		this.product = new Product(productId,productPrice,productName,productSnapshotDate,productType);
