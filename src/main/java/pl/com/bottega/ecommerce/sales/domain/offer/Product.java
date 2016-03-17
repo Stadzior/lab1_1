@@ -21,6 +21,9 @@ public class Product {
 		this.productSnapshotDate = productSnapshotDate;
 		this.productType = productType;
 	}
+	
+	public Product(Product product){
+	}
 
 	public String getProductId() {
 		return productId;

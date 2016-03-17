@@ -30,16 +30,14 @@ public class OfferItem {
 	
 	private EntityValue value = new EntityValue();
 	
-	public OfferItem(String productId, BigDecimal productPrice, String productName,
-			Date productSnapshotDate, ProductType productType, int quantity) {
-		this(productId, productPrice, productName, productSnapshotDate, productType, quantity, null, null);
+	public OfferItem(Product product, int quantity) {
+		this(product, quantity, null, null);
 	}
 
-	public OfferItem(String productId, BigDecimal productPrice, String productName,
-			Date productSnapshotDate, ProductType productType, int quantity,
+	public OfferItem(Product product, int quantity,
 			BigDecimal discount, String discountCause) {
 		
-		this.product = new Product(productId,productPrice,productName,productSnapshotDate,productType);
+		this.product = new Product(product);
 
 		this.quantity = quantity;
 		this.discount.setDiscount(discount);
@@ -49,7 +47,7 @@ public class OfferItem {
 		if (discount != null)
 			discountValue = discountValue.subtract(discount);
 
-		this.value.setValue(productPrice.multiply(new BigDecimal(quantity)).subtract(discountValue));
+		this.value.setValue(product.getProductPrice().multiply(new BigDecimal(quantity)).subtract(discountValue));
 	}
 
 	public BigDecimal getDiscount() {
